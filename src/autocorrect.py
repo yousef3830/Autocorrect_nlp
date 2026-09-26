@@ -1,7 +1,5 @@
 import edits
 from preprocessing import preprocess
-import numpy as np
-import pandas as pd
 from nltk.tokenize import sent_tokenize
 from collections import Counter
 
@@ -29,7 +27,7 @@ def two_edits_set(word,allow_switch = True):
     one_edit_words = one_edit_set(word,allow_switch)
     two_edit_words = set()
     for w in one_edit_words:
-        two_edit_words = two_edit_words or one_edit_set(w,allow_switch)
+        two_edit_words.update(one_edit_set(w, allow_switch))    
     return two_edit_words
 
 def word_correct(word,probs,n = 2):
